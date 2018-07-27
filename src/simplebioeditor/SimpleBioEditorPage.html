@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="../../node_modules/semantic-ui-css/semantic.css">
+</head>
+<body>
+<div id="SimpleBioEditorPage"></div>
+</body>
+
+<script type="text/jsx">
+  import React from 'react';
+  import ReactDOM from 'react-dom';
+  import { Grid } from 'semantic-ui-react';
+  import queryString from 'query-string';
+  console.log('in simplebioeditorpage.html about to parse window.');
+  const queryObject = queryString.parse(window.location.search);
+  const directory = queryObject.directory || 'unknown';
+  console.log('in simplebioeditorpage.html about to render.', directory);
+
+  const render = () => {
+    const SimpleBioEditor = require('./SimpleBioEditor').default;
+    ReactDOM.render(
+      <Grid style={{padding: "20px"}}>
+        <Grid.Column>
+          <SimpleBioEditor directory={directory}/>
+        </Grid.Column>
+      </Grid>,
+      document.getElementById('SimpleBioEditorPage'));
+  }
+  render();
+</script>
+</html>
+
